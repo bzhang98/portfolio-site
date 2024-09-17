@@ -26,6 +26,10 @@ $carousel-animation-duration: 20s;
   font-family: $font-family;
 }
 
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
 .app.dark {
   color: white;
   background: $background-gradient;
