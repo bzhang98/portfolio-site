@@ -175,7 +175,7 @@ function App() {
                   <Mail /> Email Me
                 </motion.a>
                 <motion.a
-                  href="https://drive.google.com/file/d/1SbpXgs6f7LMPU4RAfSLQ_UyOZl33IkyI/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1o_CfYf-8nHDjjBtmFKNWXCwpGx3RZVFj/view?usp=sharing"
                   target="_blank"
                   className="text-white hover:bg-secondary-color hover:text-black flex items-center gap-2 p-2 rounded-md border border-primary-color"
                   whileHover={{ scale: 1.1 }}
