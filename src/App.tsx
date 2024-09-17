@@ -83,24 +83,33 @@ function App() {
         <nav className={`flex flex-wrap justify-between items-center w-fit`}>
           <img className="w-[10%]" src="/images/favicon.ico" alt="Favicon" />
           <ul className="flex gap-8">
-            <li
+            <motion.li
               className="cursor-pointer text-xl font-semibold"
               onClick={() => scrollToSection("top")}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               Home
-            </li>
-            <li
+            </motion.li>
+            <motion.li
               className="cursor-pointer text-xl font-semibold"
               onClick={() => scrollToSection("about")}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               About
-            </li>
-            <li
+            </motion.li>
+            <motion.li
               className="cursor-pointer text-xl font-semibold"
               onClick={() => scrollToSection("projects")}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               Projects
-            </li>
+            </motion.li>
           </ul>
         </nav>
       </motion.header>
@@ -133,33 +142,45 @@ function App() {
               </p>
               <p className="text-2xl">Let's get in touch!</p>
               <div className="flex flex-wrap gap-8">
-                <a
+                <motion.a
                   href="https://github.com/bzhang98"
                   target="_blank"
-                  className="text-white hover:bg-secondary-color hover:text-black transition duration-300 flex items-center gap-2 p-2 rounded-md border border-primary-color z-10"
+                  className="text-white hover:bg-secondary-color hover:text-black flex items-center gap-2 p-2 rounded-md border border-primary-color"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Github /> GitHub <ExternalLink className="ml-4" />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="https://www.linkedin.com/in/brian-zhang-73317b2a6"
                   target="_blank"
-                  className="text-white hover:bg-secondary-color hover:text-black transition duration-300 flex items-center gap-2 p-2 rounded-md border border-primary-color z-10"
+                  className="text-white hover:bg-secondary-color hover:text-black flex items-center gap-2 p-2 rounded-md border border-primary-color"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Linkedin /> LinkedIn <ExternalLink className="ml-4" />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="mailto:zhang.br1998@gmail.com"
-                  className="text-white hover:bg-secondary-color hover:text-black transition duration-300 flex items-center gap-2 p-2 rounded-md border border-primary-color z-10"
+                  className="text-white hover:bg-secondary-color hover:text-black flex items-center gap-2 p-2 rounded-md border border-primary-color"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Mail /> Email Me
-                </a>
-                <a
-                  href="https://www.myperfectresume.com/feedback/session/8e019836-0c2a-41ad-b5ee-c1d8df722e1f"
+                </motion.a>
+                <motion.a
+                  href="https://drive.google.com/file/d/1SbpXgs6f7LMPU4RAfSLQ_UyOZl33IkyI/view?usp=sharing"
                   target="_blank"
-                  className="text-white hover:bg-secondary-color hover:text-black transition duration-300 flex items-center gap-2 p-2 rounded-md border border-primary-color z-10"
+                  className="text-white hover:bg-secondary-color hover:text-black flex items-center gap-2 p-2 rounded-md border border-primary-color"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <FileText /> Resume <ExternalLink className="ml-4" />
-                </a>
+                </motion.a>
               </div>
             </div>
           </motion.div>
@@ -438,10 +459,11 @@ function App() {
                 <div className="card-content flex flex-col gap-4">
                   <h3 className="text-lg font-bold">Portfolio Site</h3>
                   <p className="project-description">
-                    You're here! This portfolio site was scaffolded with Vite, built with React and
-                    styled with Tailwind CSS. It features a mobile-friendly responsive design
-                    and smooth animations. The site is hosted on Vercel and uses
-                    Framer Motion for animations.
+                    You're here! This portfolio site was scaffolded with Vite,
+                    built with React and styled with Tailwind CSS. It features a
+                    mobile-friendly responsive design and smooth animations. The
+                    site is hosted on Vercel and uses Framer Motion for
+                    animations.
                   </p>
                   <ul className="tech-stack flex flex-wrap gap-4">
                     <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
