@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+// Variables
+$primary-color: #00a8ff;
+$secondary-color: #66c9ff;
+$light-gray: #cccccc;
+$background-gradient: linear-gradient(135deg, #1c1c1c 0%, #323232 100%);
+$font-family: "Lato", sans-serif;
+$carousel-width: 100%;
+$carousel-height: 100px;
+$carousel-animation-duration: 20s;
+
+// Global Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+}
+
+#root {
+  font-family: $font-family;
+}
+
+.app.dark {
+  color: white;
+  background: $background-gradient;
+}
+
+.app {
+  background: white;
+  color: black;
+}
+
+.content {
+  width: clamp(400px, 100vw, 1080px);
+  margin: 0 auto;
+  padding: 20px 40px;
+}
+
+h2.underlined {
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: $primary-color;
+  }
+}
+
+ul.custom-list-style li {
+  position: relative;
+}
+
+ul.custom-list-style li::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background-image: url("/images/checkmark-circle.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+// Hero Section
+.hero {
+  .hero-background {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(20, 20, 20, 0.9),
+      /* Almost black */ rgba(40, 40, 60, 0.9),
+      /* Dark blue-gray */
+    );
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+    z-index: -1;
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-110%);
+  }
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: $carousel-height;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 5%,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(0, 0, 0, 1) 90%,
+    rgba(0, 0, 0, 0) 95%
+  );
+
+  .slider {
+    width: fit-content;
+    display: flex;
+    gap: 80px;
+    position: absolute;
+    transform: translateX(100%);
+  }
+
+  .slider:nth-child(1) {
+    animation-delay: 0s;
+    animation: slide $carousel-animation-duration infinite linear;
+  }
+
+  .slider:nth-child(2) {
+    animation: slide $carousel-animation-duration infinite linear;
+    animation-delay: calc($carousel-animation-duration / 2);
+  }
+
+  img {
+    height: calc($carousel-height - 30px);
+    object-fit: cover;
+  }
+}
