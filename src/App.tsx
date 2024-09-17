@@ -17,10 +17,14 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
 import { BookOpen, Code, Dumbbell, Utensils } from "lucide-react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
   const aboutSectionRef = useRef<HTMLDivElement>(null);
   const projectsSectionRef = useRef<HTMLDivElement>(null);
+  const queryCrafterGallery = useRef<HTMLDialogElement>(null);
+  const stockAppGallery = useRef<HTMLDialogElement>(null);
 
   const [scrollY, setScrollY] = useState(window.scrollY);
 
@@ -450,7 +454,7 @@ function App() {
             <h2 className="underlined text-4xl font-bold">Projects</h2>
             <div className="flex flex-col gap-16 min-w-[100%]">
               <motion.div
-                className="flex justify-between gap-12 items-center"
+                className=""
                 initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
@@ -488,7 +492,6 @@ function App() {
                 </div>
               </motion.div>
               <motion.div
-                className="flex justify-between gap-12 items-center"
                 initial={{ x: 100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
@@ -542,25 +545,104 @@ function App() {
                     </li>
                   </ul>
                   <div className="links flex gap-4">
-                    <a
+                    <motion.a
                       href="https://github.com/bzhang98/query-crafter"
                       target="_blank"
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md transition duration-300 hover:bg-secondary-color hover:text-black"
+                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
                     >
                       Github <ExternalLink />
-                    </a>
-                    <a
+                    </motion.a>
+                    <motion.a
                       href="https://query-crafter.vercel.app/"
                       target="_blank"
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md transition duration-300 hover:bg-secondary-color hover:text-black"
+                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
                     >
                       Live <ExternalLink />
-                    </a>
-                    <button className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md transition duration-300 hover:bg-secondary-color hover:text-black">
+                    </motion.a>
+                    <motion.button
+                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                      onClick={() => {
+                        if (queryCrafterGallery.current) {
+                          queryCrafterGallery.current.showModal();
+                        }
+                      }}
+                    >
                       Gallery <Images />
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
+                <dialog
+                  ref={queryCrafterGallery}
+                  className="rounded-lg fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg z-50 w-[90vw] max-w-[800px] overflow-hidden"
+                >
+                  <div className="overflow-x-auto pb-6 px-6 pt-6">
+                    <div className="flex gap-8 items-end">
+                      <figure className="w-full flex-shrink-0">
+                        <img
+                          src="/images/query_crafter_gallery/preview.png"
+                          alt="Preview"
+                          className="rounded-lg shadow-md w-full h-auto object-cover"
+                        />
+                        <figcaption className="text-black mt-2">
+                          Preview
+                        </figcaption>
+                      </figure>
+                      <figure className="w-full flex-shrink-0">
+                        <img
+                          src="/images/query_crafter_gallery/dark-mode-preview.png"
+                          alt="Dark Mode Preview"
+                          className="rounded-lg shadow-md w-full h-auto object-cover"
+                        />
+                        <figcaption className="text-black mt-2">
+                          Dark Mode
+                        </figcaption>
+                      </figure>
+                      <figure className="w-full flex-shrink-0">
+                        <img
+                          src="/images/query_crafter_gallery/search-history.png"
+                          alt="Search History"
+                          className="rounded-lg shadow-md w-full h-auto object-cover"
+                        />
+                        <figcaption className="text-black mt-2">
+                          Search History
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                  <div className="sticky left-0 bottom-0 w-full bg-white p-4">
+                    <button
+                      className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+                      onClick={() => {
+                        if (queryCrafterGallery.current) {
+                          queryCrafterGallery.current.close();
+                        }
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </dialog>
               </motion.div>
               <motion.div
                 className="flex justify-between gap-12"
@@ -635,11 +717,76 @@ function App() {
                     <a className="flex items-center gap-2 py-2 px-4 text-gray-500 border-2 border-gray-500 rounded-md transition duration-300 cursor-not-allowed">
                       Live <ExternalLink />
                     </a>
-                    <button className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md transition duration-300 hover:bg-secondary-color hover:text-black">
+                    <motion.button
+                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                      onClick={() => {
+                        if (stockAppGallery.current) {
+                          stockAppGallery.current.showModal();
+                        }
+                      }}
+                    >
                       Gallery <Images />
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
+                <dialog
+                  ref={stockAppGallery}
+                  className="rounded-lg fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg z-50 w-[90vw] max-w-[800px] overflow-hidden"
+                >
+                  <div className="overflow-x-auto pb-6 px-6 pt-6">
+                    <div className="flex gap-8 items-end">
+                      <figure className="w-full flex-shrink-0">
+                        <img
+                          src="/images/stock_app_gallery/home.png"
+                          alt="Preview"
+                          className="rounded-lg shadow-md w-full h-auto object-cover"
+                        />
+                        <figcaption className="text-black mt-2">
+                          Home page
+                        </figcaption>
+                      </figure>
+                      <figure className="w-full flex-shrink-0">
+                        <img
+                          src="/images/stock_app_gallery/search.png"
+                          alt="Dark Mode Preview"
+                          className="rounded-lg shadow-md w-full h-auto object-cover"
+                        />
+                        <figcaption className="text-black mt-2">
+                          Search
+                        </figcaption>
+                      </figure>
+                      <figure className="w-full flex-shrink-0">
+                        <img
+                          src="/images/stock_app_gallery/stock-page.png"
+                          alt="Search History"
+                          className="rounded-lg shadow-md w-full h-auto object-cover"
+                        />
+                        <figcaption className="text-black mt-2">
+                          Stock details
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                  <div className="sticky left-0 bottom-0 w-full bg-white p-4">
+                    <button
+                      className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+                      onClick={() => {
+                        if (stockAppGallery.current) {
+                          stockAppGallery.current.close();
+                        }
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </dialog>
               </motion.div>
             </div>
           </div>
