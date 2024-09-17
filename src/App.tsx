@@ -16,7 +16,7 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
-import { BookOpen, Code, Dumbbell, Utensils} from "lucide-react";
+import { BookOpen, Code, Dumbbell, Utensils } from "lucide-react";
 
 function App() {
   const aboutSectionRef = useRef<HTMLDivElement>(null);
@@ -430,7 +430,7 @@ function App() {
             <div className="flex flex-col gap-16 min-w-[100%]">
               <motion.div
                 className="flex justify-between gap-12 items-center"
-                initial={{ x: 100, opacity: 0 }}
+                initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
                 viewport={{ amount: 0.2, once: true }}
@@ -438,11 +438,10 @@ function App() {
                 <div className="card-content flex flex-col gap-4">
                   <h3 className="text-lg font-bold">Portfolio Site</h3>
                   <p className="project-description">
-                    You're here! This portfolio site was built with React and
-                    styled with Tailwind CSS. It features a responsive design
+                    You're here! This portfolio site was scaffolded with Vite, built with React and
+                    styled with Tailwind CSS. It features a mobile-friendly responsive design
                     and smooth animations. The site is hosted on Vercel and uses
-                    Framer Motion for animations. The site is fully responsive
-                    and optimized for mobile devices.
+                    Framer Motion for animations.
                   </p>
                   <ul className="tech-stack flex flex-wrap gap-4">
                     <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
@@ -464,25 +463,6 @@ function App() {
                       Framer Motion
                     </li>
                   </ul>
-                  <div className="links flex gap-4">
-                    <a
-                      href="https://github.com/bzhang98/query-crafter"
-                      target="_blank"
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md transition duration-300 hover:bg-secondary-color hover:text-black"
-                    >
-                      Github <ExternalLink />
-                    </a>
-                    <a
-                      href="https://query-crafter.vercel.app/"
-                      target="_blank"
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md transition duration-300 hover:bg-secondary-color hover:text-black"
-                    >
-                      Live <ExternalLink />
-                    </a>
-                    <button className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md transition duration-300 hover:bg-secondary-color hover:text-black">
-                      Gallery <Images />
-                    </button>
-                  </div>
                 </div>
               </motion.div>
               <motion.div
