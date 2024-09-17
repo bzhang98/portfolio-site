@@ -16,7 +16,7 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
-import { BookOpen, Code, Dumbbell, Utensils } from "lucide-react";
+import { BookOpen, Code, Dumbbell, Utensils, ChevronsRight } from "lucide-react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
@@ -629,7 +629,7 @@ function App() {
                       </figure>
                     </div>
                   </div>
-                  <div className="sticky left-0 bottom-0 w-full bg-white p-4">
+                  <div className="p-4 flex justify-between items-center">
                     <button
                       className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
                       onClick={() => {
@@ -640,6 +640,9 @@ function App() {
                     >
                       Close
                     </button>
+                    <p className="text-black flex">
+                      Scroll to see more <ChevronsRight />
+                    </p>
                   </div>
                 </dialog>
               </motion.div>
@@ -773,7 +776,7 @@ function App() {
                       </figure>
                     </div>
                   </div>
-                  <div className="sticky left-0 bottom-0 w-full bg-white p-4">
+                  <div className="flex justify-between items-center p-4">
                     <button
                       className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
                       onClick={() => {
@@ -784,6 +787,9 @@ function App() {
                     >
                       Close
                     </button>
+                    <p className="text-black flex">
+                      Scroll to see more <ChevronsRight />
+                    </p>
                   </div>
                 </dialog>
               </motion.div>
