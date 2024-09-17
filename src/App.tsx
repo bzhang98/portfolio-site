@@ -16,8 +16,15 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
-import { BookOpen, Code, Dumbbell, Utensils, ChevronsRight } from "lucide-react";
+import {
+  BookOpen,
+  Code,
+  Dumbbell,
+  Utensils,
+  ChevronsRight,
+} from "lucide-react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import ProceduralBackground from "./components/procedural-background";
 
 function App() {
   const aboutSectionRef = useRef<HTMLDivElement>(null);
@@ -188,7 +195,7 @@ function App() {
             </div>
           </motion.div>
           <motion.div
-            className="hero-background absolute w-full h-[100vh] top-0"
+            className="hero-background absolute w-full h-[100vh] top-0 -z-10"
             initial={{
               height: "calc(100vh + 800px)",
               y: "100vh",
@@ -202,6 +209,14 @@ function App() {
               height: { duration: 1.5, delay: 2 },
             }}
           ></motion.div>
+          <motion.div
+            className="canvas-wrapper absolute top-0 left-0 w-full h-full overflow-hidden -z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2, delay: 3 }}
+          >
+            <ProceduralBackground />
+          </motion.div>
         </section>
         <motion.section
           className="about flex justify-center items-center"

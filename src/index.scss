@@ -81,14 +81,12 @@ ul.custom-list-style li::before {
 
 // Hero Section
 .hero {
-  .hero-background {
+  .hero-background, .canvas-wrapper {
     background-image: linear-gradient(
       to bottom,
-      rgba(20, 20, 20, 0.9),
-      /* Almost black */ rgba(40, 40, 60, 0.9),
-      /* Dark blue-gray */
+      rgba(0, 44, 75, 0.9),
+      rgba(10, 10, 20, 0.9)
     );
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
-    z-index: -1;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
   }
 }
