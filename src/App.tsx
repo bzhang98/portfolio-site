@@ -16,14 +16,13 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
-import { BookOpen, Code, Dumbbell, Utensils, Sun, Moon } from "lucide-react";
+import { BookOpen, Code, Dumbbell, Utensils} from "lucide-react";
 
 function App() {
   const aboutSectionRef = useRef<HTMLDivElement>(null);
   const projectsSectionRef = useRef<HTMLDivElement>(null);
 
   const [scrollY, setScrollY] = useState(window.scrollY);
-  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
