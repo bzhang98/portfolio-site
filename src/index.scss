@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 // Variables
 $primary-color: #00a8ff;
@@ -22,71 +22,50 @@ $carousel-animation-duration: 20s;
   color: inherit;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #root {
   font-family: $font-family;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.app.dark {
+body {
   color: white;
-  background: $background-gradient;
+  background: black;
+  display: flex;
+  justify-content: center;
 }
 
-.app {
-  background: white;
-  color: black;
-}
-
-.content {
-  width: clamp(400px, 100vw, 1080px);
-  margin: 0 auto;
-  padding: 20px 40px;
-}
-
-h2.underlined {
-  margin-bottom: 30px;
-  position: relative;
-  display: inline-block;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background-color: $primary-color;
-  }
-}
-
-ul.custom-list-style li {
+span.center-line {
   position: relative;
 }
 
-ul.custom-list-style li::before {
+span.center-line::before {
   content: "";
   position: absolute;
-  left: -30px;
-  top: 2px;
-  width: 20px;
-  height: 20px;
-  background-image: url("/images/checkmark-circle.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1px solid #9ca3af; /* Adjust thickness and color as needed */
+  transform: translateY(-50%);
 }
 
-// Hero Section
-.hero {
-  .hero-background, .canvas-wrapper {
-    background-image: linear-gradient(
-      to bottom,
-      rgba(0, 44, 75, 0.9),
-      rgba(10, 10, 20, 0.9)
-    );
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+span.center-line.white::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1px solid white; /* Adjust thickness and color as needed */
+  transform: translateY(-50%);
+}
+
+@layer base {
+  body {
+    @apply font-inter; /* Global font */
   }
 }

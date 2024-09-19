@@ -3,14 +3,10 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      colors: {
-        "primary-color": "#00a8ff",
-        "secondary-color": "#66c9ff",
+      fontFamily: {
+        inter: ["Inter", "sans-serif"], // Default global font
+        fira: ["Fira Code", "monospace"], // Fira Code for code blocks
       },
-      screens: {
-        "950": "950px",
-        "775": "775px",
-      }
     },
   },
   plugins: [],
