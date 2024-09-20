@@ -10,7 +10,7 @@ export default function TerminalInput({
   const [input, setInput] = useState("");
   const inputRef = useRef(input); // Ref to store the current input value
 
-  const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
+  const [currentCommandIndex, setCurrentCommandIndex] = useState(-1);
   const commandIndexRef = useRef(currentCommandIndex);
 
   useEffect(() => {
@@ -24,29 +24,40 @@ export default function TerminalInput({
         // Handle Enter key, e.g., submit command
         processCommand(inputRef.current);
         setInput(""); // Clear the input after submission
-        setCurrentCommandIndex(previousCommands.length + 1);
+        setCurrentCommandIndex(previousCommands.length);
       } else if (e.key === "ArrowUp") {
         // Handle ArrowUp key
         if (!previousCommands.length) return;
         if (commandIndexRef.current === 0) {
-          setInput(previousCommands[commandIndexRef.current].command);
+          setInput(
+            previousCommands[commandIndexRef.current].command.mainCommand +
+              " " +
+              previousCommands[commandIndexRef.current].command.args.join(" ")
+          );
           return;
         }
-        setInput(previousCommands[commandIndexRef.current - 1]?.command);
+        setInput(
+          previousCommands[commandIndexRef.current].command.mainCommand +
+            " " +
+            previousCommands[commandIndexRef.current].command.args.join(" ")
+        );
         setCurrentCommandIndex((prev) => {
-          return prev > 0 ? prev - 1 : 0;
+          return prev - 1;
         });
       } else if (e.key === "ArrowDown") {
-        e.preventDefault();
         // Handle ArrowDown key
         if (!previousCommands.length) return;
-        if (commandIndexRef.current === previousCommands.length) {
+        if (commandIndexRef.current === previousCommands.length - 1) {
           setInput("");
           return;
         }
-        setInput(previousCommands[commandIndexRef.current + 1]?.command);
+        setInput(
+          previousCommands[commandIndexRef.current + 1].command.mainCommand +
+            " " +
+            previousCommands[commandIndexRef.current + 1].command.args.join(" ")
+        );
         setCurrentCommandIndex((prev) => {
-          return prev < previousCommands.length ? prev + 1 : previousCommands.length;
+          return prev + 1;
         });
       } else if (e.key.length === 1) {
         // Handle other printable characters
@@ -67,9 +78,17 @@ export default function TerminalInput({
   return (
     <div className="user-input">
       <span>guest@https://brzh.dev/terminal $ </span>
-      <p className="inline-block">
+      <p className="inline-block leading-none">
         {input}
-        <span>_</span>
+        <span
+          style={{
+            display: "inline-block",
+            width: "8px",
+            height: "16px",
+            border: "1px solid white",
+            backgroundColor: "white",
+          }}
+        ></span>
       </p>
     </div>
   );

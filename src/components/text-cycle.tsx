@@ -6,11 +6,10 @@ import {
   Smartphone,
   Layers3,
   Blocks,
-  Library,
   Cog,
-  FileCode2,
   Brush,
 } from "lucide-react";
+import useWindowDimensions from "@/hooks/use-window-dimensions";
 
 const text = [
   <>
@@ -29,22 +28,17 @@ const text = [
     <Blocks size={24} /> UI/UX Designer
   </>,
   <>
-    <Library size={24} /> Lifelong Learner
-  </>,
-  <>
     <Cog size={24} /> Problem Solver
-  </>,
-  <>
-    <FileCode2 size={24} /> Software Engineer
   </>,
   <>
     <Brush size={24} /> Creative
   </>,
 ];
 
-export default function TextCycle({ screenWidth }: { screenWidth: number }) {
+export default function TextCycle() {
   const [index, setIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -70,9 +64,9 @@ export default function TextCycle({ screenWidth }: { screenWidth: number }) {
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.5 }}
             className={`${
-              screenWidth < 700
+              width < 700
                 ? "text-lg"
-                : screenWidth < 500
+                : width < 500
                 ? "text-md"
                 : "text-3xl"
             } font-semibold font-fira flex items-center justify-center gap-2 select-none`}

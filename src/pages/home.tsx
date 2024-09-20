@@ -71,7 +71,6 @@ export default function Home() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
     });
@@ -99,7 +98,7 @@ export default function Home() {
           <div className="relative mr-4">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl"></div>
             <div className="relative backdrop-blur-sm bg-white/10 rounded-xl px-2 py-8 shadow-xl text-center">
-              <TextCycle screenWidth={windowWidth}/>
+              <TextCycle screenWidth={windowWidth} />
             </div>
           </div>
 
@@ -400,11 +399,11 @@ export default function Home() {
           <h2 className="text-xl mb-8">Projects</h2>
           <ul className="flex flex-col gap-4">
             <motion.li
-              className="flex gap-2"
+              className="flex flex-col gap-4 lg:flex-row"
               initial={{ x: 200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ type: "spring", bounce: 0.5, duration: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <img
                 src="/images/android-chrome-192x192.png"
@@ -486,11 +485,11 @@ export default function Home() {
               </div>
             </motion.li>
             <motion.li
-              className="flex gap-2"
+              className="flex flex-col gap-4 lg:flex-row"
               initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ type: "spring", bounce: 0.5, duration: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <img
                 src="/images/qc-logo.png"
@@ -623,11 +622,11 @@ export default function Home() {
               </div>
             </motion.li>
             <motion.li
-              className="flex gap-2"
+              className="flex flex-col gap-4 lg:flex-row"
               initial={{ x: 200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ type: "spring", bounce: 0.5, duration: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <img
                 src="/images/stock-app-thumbnail.jpg"
