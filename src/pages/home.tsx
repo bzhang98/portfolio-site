@@ -21,6 +21,7 @@ import { motion } from "framer-motion";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 import AnimatedText from "@/components/animated-text";
+import TextCycle from "@/components/text-cycle";
 
 function NavLink({ text, href }: { text: string; href: string }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -70,6 +71,7 @@ export default function Home() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
     });
@@ -82,16 +84,25 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="grid lg:grid-cols-[400px_1fr] max-w-screen-2xl xl:p-[100px] lg:p-[80px] p-[40px]">
-      <header className="flex flex-col gap-4 relative">
+    <div className="grid lg:grid-cols-[450px_1fr] max-w-screen-2xl xl:p-[100px] lg:p-[80px] p-[40px]">
+      <motion.header
+        className="flex flex-col gap-4 relative"
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <div className="header-content lg:h-[80vh] flex flex-col gap-4 lg:sticky xl:top-[100px] lg:top-[80px] top-[40px]">
           <h1 className="text-5xl font-bold">
             <a href="https://brzh.dev">Brian Zhang</a>
           </h1>
-          <h2 className="text-2xl bold-semibold">Web Developer</h2>
-          <p className="text-gray-400">
-            I build clean, responsive, and user-friendly web apps.
-          </p>
+
+          <div className="relative mr-4">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl"></div>
+            <div className="relative backdrop-blur-sm bg-white/10 rounded-xl px-2 py-8 shadow-xl text-center">
+              <TextCycle />
+            </div>
+          </div>
+
           {windowWidth > 1024 && (
             <nav className="mt-16">
               <ul className="flex flex-col gap-8">
@@ -115,11 +126,18 @@ export default function Home() {
               <motion.a
                 href="https://www.github.com/bzhang98"
                 target="_blank"
-                className="text-gray-400"
+                className="text-gray-400 relative"
+                whileHover="hover"
               >
                 <motion.div
-                  whileHover={{ scale: 1.2, color: "white" }}
+                  initial={{ opacity: 0 }}
+                  variants={{ hover: { opacity: 1 } }}
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 blur-xl"
+                ></motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.2, color: "white", opacity: 1 }}
                   transition={{ duration: 0.2 }}
+                  className="relative backdrop-blur-sm bg-white/10 rounded-full shadow-xl text-center p-2"
                 >
                   <Github size={30} />
                 </motion.div>
@@ -129,11 +147,18 @@ export default function Home() {
               <motion.a
                 href="https://www.linkedin.com/in/zhang-br1998"
                 target="_blank"
-                className="text-gray-400"
+                className="text-gray-400 relative"
+                whileHover="hover"
               >
                 <motion.div
-                  whileHover={{ scale: 1.2, color: "white" }}
+                  initial={{ opacity: 0 }}
+                  variants={{ hover: { opacity: 1 } }}
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 blur-xl"
+                ></motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.2, color: "white", opacity: 1 }}
                   transition={{ duration: 0.2 }}
+                  className="relative backdrop-blur-sm bg-white/10 rounded-full shadow-xl text-center p-2"
                 >
                   <Linkedin size={30} />
                 </motion.div>
@@ -142,11 +167,19 @@ export default function Home() {
             <li>
               <motion.a
                 href="mailto:zhang.br1998@gmail.com"
-                className="text-gray-400"
+                target="_blank"
+                className="text-gray-400 relative"
+                whileHover="hover"
               >
                 <motion.div
-                  whileHover={{ scale: 1.2, color: "white" }}
+                  initial={{ opacity: 0 }}
+                  variants={{ hover: { opacity: 1 } }}
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 blur-xl"
+                ></motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.2, color: "white", opacity: 1 }}
                   transition={{ duration: 0.2 }}
+                  className="relative backdrop-blur-sm bg-white/10 rounded-full shadow-xl text-center p-2"
                 >
                   <Mail size={30} />
                 </motion.div>
@@ -154,8 +187,12 @@ export default function Home() {
             </li>
           </ul>
         </div>
-      </header>
-      <main>
+      </motion.header>
+      <motion.main
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <section
           id="about"
           className="flex flex-col gap-8 my-12 lg:mb-12 lg:mt-0"
@@ -232,11 +269,11 @@ export default function Home() {
             <VerticalTimelineElement
               className="vertical-timeline-element--education"
               contentStyle={{
-                background: "rgb(233, 30, 99)",
-                color: "#fff",
+                background: "#11182799",
+                color: "#93c5fd",
               }}
               date="Sep 2024 - present"
-              iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
+              iconStyle={{ background: "#111827", color: "#93c5fd" }}
               icon={<GraduationCap />}
               position="right"
             >
@@ -251,12 +288,13 @@ export default function Home() {
             <VerticalTimelineElement
               className="vertical-timeline-element--education"
               contentStyle={{
-                background: "rgb(233, 30, 99)",
-                color: "#fff",
+                background: "#11182799",
+                color: "#93c5fd",
               }}
               date="Jan 2024 - present"
-              iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
+              iconStyle={{ background: "#111827", color: "#93c5fd" }}
               icon={<GraduationCap />}
+              position="right"
             >
               <h3 className="vertical-timeline-element-title">
                 Degree Candidate - BSc. Computer Science
@@ -271,14 +309,11 @@ export default function Home() {
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
               contentStyle={{
-                background: "rgb(33, 150, 243)",
-                color: "#fff",
-              }}
-              contentArrowStyle={{
-                borderRight: "7px solid  rgb(33, 150, 243)",
+                background: "#33415599",
+                color: "#FFF",
               }}
               date="Sep 2022 - Sep 2024"
-              iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+              iconStyle={{ background: "#334155", color: "#FFF" }}
               icon={<BriefcaseBusiness />}
             >
               <h3 className="vertical-timeline-element-title">
@@ -295,14 +330,11 @@ export default function Home() {
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
               contentStyle={{
-                background: "rgb(33, 150, 243)",
-                color: "#fff",
+                background: "#33415599",
+                color: "#FFF",
               }}
-              contentArrowStyle={{
-                borderRight: "7px solid  rgb(33, 150, 243)",
-              }}
-              date="Jul 2021 - Sep 2022"
-              iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+              date="Jul 2021 - Aug 2022"
+              iconStyle={{ background: "#334155", color: "#FFF" }}
               icon={<BriefcaseBusiness />}
               position="left"
             >
@@ -316,11 +348,11 @@ export default function Home() {
             <VerticalTimelineElement
               className="vertical-timeline-element--education"
               contentStyle={{
-                background: "rgb(233, 30, 99)",
-                color: "#fff",
+                background: "#11182799",
+                color: "#93c5fd",
               }}
-              date="Sep 2017 - Jun 2021"
-              iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
+              date="Sep 2017 - May 2021"
+              iconStyle={{ background: "#111827", color: "#93c5fd" }}
               icon={<GraduationCap />}
               position="right"
             >
@@ -330,26 +362,50 @@ export default function Home() {
               </h4>
             </VerticalTimelineElement>
           </VerticalTimeline>
-          <motion.a
-            href="https://docs.google.com/document/d/1tpKiwA99oj27TdVLMgwVC6YfjW9b9CW4ch9A3cxqhm4/edit?usp=sharing"
-            target="_blank"
-            className="text-lg flex hover:text-teal-500"
-            whileHover="hover"
-          >
-            View my full resume
-            <motion.div
-              initial={{ x: 4, y: 8 }}
-              variants={{ hover: { x: 10, y: 2 } }}
-              transition={{ type: "spring", stiffness: 300, duration: 0.5 }}
+          <motion.div className="relative w-fit" whileHover="hover">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
+            <motion.a
+              href="https://docs.google.com/document/d/1tpKiwA99oj27TdVLMgwVC6YfjW9b9CW4ch9A3cxqhm4/edit?usp=sharing"
+              target="_blank"
+              className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center"
+              variants={{
+                hover: {
+                  scale: 1.05,
+                  rotate: 5,
+                  boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                },
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                duration: 0.5,
+              }}
             >
-              <ArrowUpRight size={16} />
-            </motion.div>
-          </motion.a>
+              View my Full Resume
+              <motion.div
+                initial={{ x: -2, y: 4 }}
+                variants={{ hover: { x: 2, y: 0 } }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  duration: 0.5,
+                }}
+              >
+                <ArrowUpRight size={16} />
+              </motion.div>
+            </motion.a>
+          </motion.div>
         </section>
         <section id="projects">
           <h2 className="text-xl mb-8">Projects</h2>
           <ul className="flex flex-col gap-4">
-            <li className="flex gap-2">
+            <motion.li
+              className="flex gap-2"
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               <img
                 src="/images/android-chrome-192x192.png"
                 alt="query crafter logo"
@@ -358,7 +414,6 @@ export default function Home() {
                 }}
                 className="self-start"
               />
-
               <div className="content">
                 <h3 className="text-lg font-bold">Portfolio Site</h3>
                 <p>
@@ -374,49 +429,69 @@ export default function Home() {
                 </p>
                 <TerminalLink />
                 <ul className="flex flex-wrap gap-2 mt-4">
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     HTML
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     CSS
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     TypeScript
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     React
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     Tailwind CSS
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     Framer Motion
                   </li>
                 </ul>
                 <div className="links mt-4 flex gap-4">
-                  <motion.a
-                    href="https://github.com/bzhang98/portfolio-site"
-                    target="_blank"
-                    className="flex hover:text-teal-500 border-2 border-teal-500 rounded-md py-2 px-4 gap-2"
-                    whileHover="hover"
-                  >
-                    GitHub
-                    <motion.div
-                      initial={{ x: -2, y: 4 }}
-                      variants={{ hover: { x: 2, y: 0 } }}
+                  <motion.div className="relative" whileHover="hover">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
+                    <motion.a
+                      href="https://github.com/bzhang98/portfolio-site"
+                      target="_blank"
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center"
+                      variants={{
+                        hover: {
+                          scale: 1.05,
+                          rotate: 5,
+                          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
                       transition={{
                         type: "spring",
                         stiffness: 300,
                         duration: 0.5,
                       }}
                     >
-                      <ArrowUpRight size={16} />
-                    </motion.div>
-                  </motion.a>
+                      GitHub
+                      <motion.div
+                        initial={{ x: -2, y: 4 }}
+                        variants={{ hover: { x: 2, y: 0 } }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          duration: 0.5,
+                        }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.div>
+                    </motion.a>
+                  </motion.div>
                 </div>
               </div>
-            </li>
-            <li className="flex gap-2">
+            </motion.li>
+            <motion.li
+              className="flex gap-2"
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               <img
                 src="/images/qc-logo.png"
                 alt="query crafter logo"
@@ -452,429 +527,217 @@ export default function Home() {
                   </li>
                 </ul>
                 <ul className="flex flex-wrap gap-2 mt-4">
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     HTML
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     CSS
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     TypeScript
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     React
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     Tailwind CSS
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     Shadcn UI
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     Zod Schema Validation
                   </li>
-                  <li className="bg-teal-800/70 text-teal-300 text-xs py-2 px-4 rounded-full">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     React Hook Form
                   </li>
                 </ul>
                 <div className="links mt-4 flex gap-4">
-                  <motion.a
-                    href="https://www.github.com/bzhang98/query-crafter"
-                    target="_blank"
-                    className="flex hover:text-teal-500 border-2 border-teal-500 rounded-md py-2 px-4 gap-2"
-                    whileHover="hover"
-                  >
-                    GitHub
-                    <motion.div
-                      initial={{ x: -2, y: 4 }}
-                      variants={{ hover: { x: 2, y: 0 } }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        duration: 0.5,
-                      }}
-                    >
-                      <ArrowUpRight size={16} />
-                    </motion.div>
-                  </motion.a>
-                  <motion.a
-                    href="https://www.query-crafter.vercel.app/"
-                    target="_blank"
-                    className="flex hover:text-teal-500 border-2 border-teal-500 rounded-md py-2 px-4 gap-2"
-                    whileHover="hover"
-                  >
-                    Live Demo
-                    <motion.div
-                      initial={{ x: -2, y: 4 }}
-                      variants={{ hover: { x: 2, y: 0 } }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        duration: 0.5,
-                      }}
-                    >
-                      <ArrowUpRight size={16} />
-                    </motion.div>
-                  </motion.a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </main>
-      {/* <ProceduralBackground />
-        <section
-          className="flex justify-center items-center mt-6 overflow-hidden"
-          ref={projectsSectionRef}
-        >
-          <div className="content flex flex-col justify-center items-center gap-4 py-24">
-            <h2 className="underlined text-4xl font-bold">Projects</h2>
-            <div className="flex flex-col gap-16 min-w-[100%]">
-              <motion.div
-                className=""
-                initial={{ x: -100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ amount: 0.2, once: true }}
-              >
-                <div className="card-content flex flex-col gap-4">
-                  <h3 className="text-lg font-bold">Portfolio Site</h3>
-                  <p className="project-description">
-                    You're here! This portfolio site was scaffolded with Vite,
-                    built with React and styled with Tailwind CSS. It features a
-                    mobile-friendly responsive design and smooth animations. The
-                    site is hosted on Vercel and uses Framer Motion for
-                    animations.
-                  </p>
-                  <ul className="tech-stack flex flex-wrap gap-4">
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      HTML
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      CSS
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      JavaScript
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      React
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Tailwind CSS
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Framer Motion
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ x: 100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ amount: 0.2, once: true }}
-              >
-                <div className="card-content flex flex-col gap-4">
-                  <h3 className="text-lg font-bold">Query Crafter</h3>
-                  <p className="project-description">
-                    Create and customize Google search queries effortlessly with
-                    this React-based app. Build powerful search queries with the
-                    ability to filter specific keywords, domains, filetypes, and
-                    more. You can also view the page in dark mode for a more
-                    comfortable user experience. User-interface built with
-                    Tailwind CSS and Shadcn UI and form validation with Zod and
-                    React Hook Form.
-                  </p>
-                  <p>Features coming soon:</p>
-                  <ul className="flex flex-col gap-4 pl-[30px] custom-list-style">
-                    <li>Save frequently used queries</li>
-                    <li>View history</li>
-                    <li>
-                      Advanced filtering options such as date ranges and
-                      language preferences
-                    </li>
-                    <li>Filtering searches for other search engines</li>
-                  </ul>
-                  <ul className="tech-stack flex flex-wrap gap-4">
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      HTML
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      CSS
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      JavaScript
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      React
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Tailwind CSS
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Shadcn UI
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Zod
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      React Hook Form
-                    </li>
-                  </ul>
-                  <div className="links flex gap-4">
+                  <motion.div className="relative" whileHover="hover">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
                     <motion.a
                       href="https://github.com/bzhang98/query-crafter"
                       target="_blank"
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center"
+                      variants={{
+                        hover: {
+                          scale: 1.05,
+                          rotate: 5,
+                          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
                       transition={{
                         type: "spring",
-                        stiffness: 400,
-                        damping: 17,
+                        stiffness: 300,
+                        duration: 0.5,
                       }}
                     >
-                      Github <ExternalLink />
+                      GitHub
+                      <motion.div
+                        initial={{ x: -2, y: 4 }}
+                        variants={{ hover: { x: 2, y: 0 } }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          duration: 0.5,
+                        }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.div>
                     </motion.a>
+                  </motion.div>
+                  <motion.div className="relative" whileHover="hover">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
                     <motion.a
                       href="https://query-crafter.vercel.app/"
                       target="_blank"
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center"
+                      variants={{
+                        hover: {
+                          scale: 1.05,
+                          rotate: 5,
+                          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
                       transition={{
                         type: "spring",
-                        stiffness: 400,
-                        damping: 17,
+                        stiffness: 300,
+                        duration: 0.5,
                       }}
                     >
-                      Live <ExternalLink />
+                      Live Demo
+                      <motion.div
+                        initial={{ x: -2, y: 4 }}
+                        variants={{ hover: { x: 2, y: 0 } }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          duration: 0.5,
+                        }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.div>
                     </motion.a>
-                    <motion.button
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
+                  </motion.div>
+                </div>
+              </div>
+            </motion.li>
+            <motion.li
+              className="flex gap-2"
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <img
+                src="/images/stock-app-thumbnail.jpg"
+                alt="stock app thumbnail - credit Vecteezy"
+                style={{
+                  width: 200,
+                  borderRadius: 8,
+                }}
+                className="self-start"
+              />
+              <div className="content">
+                <h3 className="text-lg font-bold">
+                  Market Simulator - Coming Soon™
+                </h3>
+                <p>
+                  View real-time stock prices and market data. Create an account
+                  and start trading. Make trades based on real stock prices and
+                  track your portfolio over time. This app is built with React,
+                  TypeScript, and Firebase. User authentication is handled with
+                  Firebase Auth and Firestore is used to store user data.
+                </p>
+                <p className="my-4 font-semibold">
+                  🔨Features under construction:
+                </p>
+                <ul className="flex flex-col gap-2 custom-list-style">
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>View current and historical stock data
+                  </li>
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>Simulate real stock trades based on live
+                    prices
+                  </li>
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>Track the performance of your portfolio over
+                    time
+                  </li>
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>Add symbols to your watchlist and monitor
+                    their performance
+                  </li>
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>Account data synced across devices.
+                  </li>
+                </ul>
+                <ul className="flex flex-wrap gap-2 mt-4">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    HTML
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    CSS
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    TypeScript
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    React
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Tailwind CSS
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Shadcn UI
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Zod Schema Validation
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    React Hook Form
+                  </li>
+                </ul>
+                <div className="links mt-4 flex gap-4">
+                  <motion.div className="relative" whileHover="hover">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
+                    <motion.a
+                      href="https://github.com/bzhang98/stock-app"
+                      target="_blank"
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center"
+                      variants={{
+                        hover: {
+                          scale: 1.05,
+                          rotate: 5,
+                          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
                       transition={{
                         type: "spring",
-                        stiffness: 400,
-                        damping: 17,
-                      }}
-                      onClick={() => {
-                        if (queryCrafterGallery.current) {
-                          queryCrafterGallery.current.showModal();
-                        }
+                        stiffness: 300,
+                        duration: 0.5,
                       }}
                     >
-                      Gallery <Images />
-                    </motion.button>
-                  </div>
+                      GitHub
+                      <motion.div
+                        initial={{ x: -2, y: 4 }}
+                        variants={{ hover: { x: 2, y: 0 } }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          duration: 0.5,
+                        }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.div>
+                    </motion.a>
+                  </motion.div>
                 </div>
-                <dialog
-                  ref={queryCrafterGallery}
-                  className="rounded-lg fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg z-50 w-[90vw] max-w-[800px] overflow-hidden"
-                >
-                  <div className="overflow-x-auto pb-6 px-6 pt-6">
-                    <div className="flex gap-8 items-end">
-                      <figure className="w-full flex-shrink-0">
-                        <img
-                          src="/images/query_crafter_gallery/preview.png"
-                          alt="Preview"
-                          className="rounded-lg shadow-md w-full h-auto object-cover"
-                        />
-                        <figcaption className="text-black mt-2">
-                          Preview
-                        </figcaption>
-                      </figure>
-                      <figure className="w-full flex-shrink-0">
-                        <img
-                          src="/images/query_crafter_gallery/dark-mode-preview.png"
-                          alt="Dark Mode Preview"
-                          className="rounded-lg shadow-md w-full h-auto object-cover"
-                        />
-                        <figcaption className="text-black mt-2">
-                          Dark Mode
-                        </figcaption>
-                      </figure>
-                      <figure className="w-full flex-shrink-0">
-                        <img
-                          src="/images/query_crafter_gallery/search-history.png"
-                          alt="Search History"
-                          className="rounded-lg shadow-md w-full h-auto object-cover"
-                        />
-                        <figcaption className="text-black mt-2">
-                          Search History
-                        </figcaption>
-                      </figure>
-                    </div>
-                  </div>
-                  <div className="p-4 flex justify-between items-center">
-                    <button
-                      className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-                      onClick={() => {
-                        if (queryCrafterGallery.current) {
-                          queryCrafterGallery.current.close();
-                        }
-                      }}
-                    >
-                      Close
-                    </button>
-                    <p className="text-black flex">
-                      Scroll to see more <ChevronsRight />
-                    </p>
-                  </div>
-                </dialog>
-              </motion.div>
-              <motion.div
-                className="flex justify-between gap-12"
-                initial={{ x: -100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ amount: 0.2, once: true }}
-              >
-                <div className="flex flex-col gap-4">
-                  <h3 className="flex items-center gap-2 text-lg font-bold">
-                    Market Simulator - Coming Soon <Clock9 />
-                  </h3>
-                  <p className="project-description">
-                    View real-time stock prices and market data. Create an
-                    account and start trading. Make trades based on real stock
-                    prices and track your portfolio over time. This app is built
-                    with React, TypeScript, and Firebase. User authentication is
-                    handled with Firebase Auth and Firestore is used to store
-                    user data.
-                  </p>
-                  <p>Features:</p>
-                  <ul className="flex flex-col gap-4 pl-[30px] custom-list-style">
-                    <li>View current and historical stock data</li>
-                    <li>Simulate real stock trades based on live prices</li>
-                    <li>Track the performance of your portfolio over time</li>
-                    <li>
-                      Add symbols to your watchlist and track their performance
-                    </li>
-                  </ul>
-                  <ul className="tech-stack flex flex-wrap gap-4">
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      HTML
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      CSS
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      JavaScript
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      React
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Tailwind CSS
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Shadcn UI
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Zod
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      React Hook Form
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Firebase Auth
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Cloud Firestore
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      API Integration
-                    </li>
-                    <li className="text-black bg-secondary-color px-4 py-2 rounded-md">
-                      Custom Backend with Express.js
-                    </li>
-                  </ul>
-                  <div className="links flex gap-4 locked">
-                    <a className="flex items-center gap-2 py-2 px-4 text-gray-500 border-2 border-gray-500 rounded-md transition duration-300 cursor-not-allowed">
-                      Github <ExternalLink />
-                    </a>
-                    <a className="flex items-center gap-2 py-2 px-4 text-gray-500 border-2 border-gray-500 rounded-md transition duration-300 cursor-not-allowed">
-                      Live <ExternalLink />
-                    </a>
-                    <motion.button
-                      className="flex items-center gap-2 py-2 px-4 border-2 border-primary-color rounded-md hover:bg-secondary-color hover:text-black"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 17,
-                      }}
-                      onClick={() => {
-                        if (stockAppGallery.current) {
-                          stockAppGallery.current.showModal();
-                        }
-                      }}
-                    >
-                      Gallery <Images />
-                    </motion.button>
-                  </div>
-                </div>
-                <dialog
-                  ref={stockAppGallery}
-                  className="rounded-lg fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg z-50 w-[90vw] max-w-[800px] overflow-hidden"
-                >
-                  <div className="overflow-x-auto pb-6 px-6 pt-6">
-                    <div className="flex gap-8 items-end">
-                      <figure className="w-full flex-shrink-0">
-                        <img
-                          src="/images/stock_app_gallery/home.png"
-                          alt="Preview"
-                          className="rounded-lg shadow-md w-full h-auto object-cover"
-                        />
-                        <figcaption className="text-black mt-2">
-                          Home page
-                        </figcaption>
-                      </figure>
-                      <figure className="w-full flex-shrink-0">
-                        <img
-                          src="/images/stock_app_gallery/search.png"
-                          alt="Dark Mode Preview"
-                          className="rounded-lg shadow-md w-full h-auto object-cover"
-                        />
-                        <figcaption className="text-black mt-2">
-                          Search
-                        </figcaption>
-                      </figure>
-                      <figure className="w-full flex-shrink-0">
-                        <img
-                          src="/images/stock_app_gallery/stock-page.png"
-                          alt="Search History"
-                          className="rounded-lg shadow-md w-full h-auto object-cover"
-                        />
-                        <figcaption className="text-black mt-2">
-                          Stock details
-                        </figcaption>
-                      </figure>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center p-4">
-                    <button
-                      className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-                      onClick={() => {
-                        if (stockAppGallery.current) {
-                          stockAppGallery.current.close();
-                        }
-                      }}
-                    >
-                      Close
-                    </button>
-                    <p className="text-black flex">
-                      Scroll to see more <ChevronsRight />
-                    </p>
-                  </div>
-                </dialog>
-              </motion.div>
-            </div>
-          </div>
+              </div>
+            </motion.li>
+          </ul>
         </section>
-      </main> */}
+      </motion.main>
     </div>
   );
 }
