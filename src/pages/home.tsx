@@ -99,7 +99,7 @@ export default function Home() {
           <div className="relative mr-4">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl"></div>
             <div className="relative backdrop-blur-sm bg-white/10 rounded-xl px-2 py-8 shadow-xl text-center">
-              <TextCycle />
+              <TextCycle screenWidth={windowWidth}/>
             </div>
           </div>
 

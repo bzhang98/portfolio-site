@@ -42,7 +42,7 @@ const text = [
   </>,
 ];
 
-export default function TextCycle() {
+export default function TextCycle({ screenWidth }: { screenWidth: number }) {
   const [index, setIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -69,7 +69,13 @@ export default function TextCycle() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-semibold font-fira flex items-center justify-center gap-2 select-none"
+            className={`${
+              screenWidth < 700
+                ? "text-lg"
+                : screenWidth < 500
+                ? "text-md"
+                : "text-3xl"
+            } font-semibold font-fira flex items-center justify-center gap-2 select-none`}
           >
             {text[index]}
           </motion.h1>
