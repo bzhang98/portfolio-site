@@ -695,7 +695,22 @@ export default function Home() {
                     Zod Schema Validation
                   </li>
                   <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Recharts
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     React Hook Form
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Express.js
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    API Integration
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Cloud Firestore
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Firebase Auth
                   </li>
                 </ul>
                 <div className="links mt-4 flex gap-4">
