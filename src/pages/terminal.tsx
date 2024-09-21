@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import AnimatedText from "@/components/animated-text";
 import { createHangman, HangmanGame } from "../hangman/hangman";
 import HangmanCanvas from "@/hangman/hangman-canvas";
+import { createWordleGame, WordleGame } from "@/wordle/wordle";
+import { possibleWords } from "@/wordle/possible-words";
 import { AnimatePresence, motion } from "framer-motion";
 
 function PreviousCommand({ command }: { command: string }) {
@@ -31,6 +33,7 @@ export default function Terminal() {
   const navigate = useNavigate();
 
   const [hangmanGame, setHangmanGame] = useState<HangmanGame | null>(null);
+  const [wordleGame, setWordleGame] = useState<WordleGame | null>(null);
 
   useEffect(() => {
     window.scrollTo({
@@ -45,7 +48,7 @@ export default function Terminal() {
 
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000); // 5 seconds loading time
+    }, 3500); // 3.5 seconds loading time
 
     return () => clearTimeout(timer);
   }, []);
@@ -98,6 +101,11 @@ export default function Terminal() {
                     <span className="text-green-500">hangman</span>{" "}
                     <span className="text-pink-500">start</span> - start a game
                     of hangman
+                  </li>
+                  <li>
+                    <span className="text-green-500">wordle</span>{" "}
+                    <span className="text-pink-500">start</span> - start a game
+                    of wordle
                   </li>
                 </ul>
               </div>
@@ -302,6 +310,113 @@ export default function Terminal() {
         }
         break;
 
+      case "wordle":
+        if (args[0] === "start") {
+          const randomWord =
+            possibleWords[Math.floor(Math.random() * possibleWords.length)];
+          const newGame = createWordleGame(randomWord);
+          setWordleGame(newGame);
+          const output = newGame.start();
+          setPreviousCommands((prev) => [
+            ...prev,
+            { command: { mainCommand, args }, output },
+          ]);
+        } else if (args[0] === "exit" && wordleGame) {
+          setWordleGame(null);
+          setPreviousCommands((prev) => [
+            ...prev,
+            {
+              command: { mainCommand, args },
+              output: "Wordle game exited",
+            },
+          ]);
+        } else if (args[0] && wordleGame) {
+          const result = wordleGame.guess(args[0]);
+          if (result.valid) {
+            setPreviousCommands((prev) => [
+              ...prev,
+              {
+                command: { mainCommand, args },
+                output: (
+                  <>
+                    <p>{result.message}</p>
+                    <div className="flex">
+                      {result.result.map((letter, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`${
+                              letter.correctness === "green"
+                                ? "bg-green-500"
+                                : letter.correctness === "yellow"
+                                ? "bg-yellow-500"
+                                : "bg-red-500"
+                            } w-[50px] h-[50px] flex items-center justify-center text-white font-bold text-2xl m-1`}
+                          >
+                            {letter.letter}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </>
+                ),
+              },
+            ]);
+            if (wordleGame.isGameOver()) {
+              setWordleGame(null);
+            }
+            return;
+          }
+          setPreviousCommands((prev) => [
+            ...prev,
+            {
+              command: { mainCommand, args },
+              output: result.message,
+            },
+          ]);
+          if (wordleGame.isGameOver()) {
+            setWordleGame(null);
+          }
+        } else if (!wordleGame) {
+          setPreviousCommands((prev) => [
+            ...prev,
+            {
+              command: { mainCommand, args },
+              output: "No Wordle game in progress. Start with 'wordle start'.",
+            },
+          ]);
+        } else {
+          setPreviousCommands((prev) => [
+            ...prev,
+            {
+              command: { mainCommand, args },
+              output: (
+                <>
+                  <p>Wordle game in progress</p>
+                  <p>Valid commands:</p>
+                  <ul>
+                    <li>
+                      <span className="text-green-500">wordle </span>
+                      <span className="text-pink-500">start</span> - Start a new
+                      game
+                    </li>
+                    <li>
+                      <span className="text-green-500">wordle </span>
+                      <span className="text-pink-500">exit</span> - Exit the
+                      current game
+                    </li>
+                    <li>
+                      <span className="text-green-500">wordle </span>
+                      <span className="text-pink-500">[word]</span> - Guess a
+                      word
+                    </li>
+                  </ul>
+                </>
+              ),
+            },
+          ]);
+        }
+
         break;
       default:
         setPreviousCommands((prev) => [
@@ -336,9 +451,9 @@ export default function Terminal() {
 
       {!isLoading && (
         <motion.div
-          initial={{ x: -1000 }} // Start at x: -100
-          animate={{ x: 0 }} // Animate to x: 0
-          transition={{ duration: 1 }} // Add a transition duration
+          initial={{ y: -100 }} // Start at x: -100
+          animate={{ y: 0 }} // Animate to x: 0
+          transition={{ duration: 0.5 }} // Add a transition duration
         >
           <header>
             <h1>
