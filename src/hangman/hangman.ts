@@ -10,10 +10,26 @@ export type HangmanGame = {
 
 export function createHangman(
   words: string[] = [
-    "typescript",
-    "react",
-    "terminal",
-    "website",
+    "adventure",
+    "brilliant",
+    "celebrate",
+    "discovery",
+    "education",
+    "fantastic",
+    "gorgeous",
+    "happiness",
+    "important",
+    "journeying",
+    "knowledge",
+    "landscape",
+    "magnifico",
+    "notorious",
+    "overcoming",
+    "philosophy",
+    "radiation",
+    "sculpture",
+    "triumphant",
+    "wonderful",
   ]
 ): HangmanGame {
   let word = "";
