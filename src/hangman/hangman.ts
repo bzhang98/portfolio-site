@@ -33,13 +33,11 @@ export function createHangman(
   ]
 ): HangmanGame {
   let word = "";
-  let guessedLetters: string[] = [];
+  const guessedLetters: string[] = [];
   let remainingGuesses = 6;
 
   function start(): string {
     word = words[Math.floor(Math.random() * words.length)];
-    guessedLetters = [];
-    remainingGuesses = 6;
     return `Welcome to Hangman! The word has ${word.length} letters. You have ${remainingGuesses} guesses.`;
   }
 
