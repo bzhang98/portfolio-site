@@ -27,6 +27,7 @@ export default function TerminalInput({
         setCurrentCommandIndex(previousCommands.length);
       } else if (e.key === "ArrowUp") {
         // Handle ArrowUp key
+        e.preventDefault();
         if (!previousCommands.length) return;
         if (commandIndexRef.current === 0) {
           setInput(
@@ -46,6 +47,7 @@ export default function TerminalInput({
         });
       } else if (e.key === "ArrowDown") {
         // Handle ArrowDown key
+        e.preventDefault();
         if (!previousCommands.length) return;
         if (commandIndexRef.current === previousCommands.length - 1) {
           setInput("");
