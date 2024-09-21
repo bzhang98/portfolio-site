@@ -11,7 +11,7 @@ import {
   Utensils,
   SquareTerminal,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -22,6 +22,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 import AnimatedText from "@/components/animated-text";
 import TextCycle from "@/components/text-cycle";
+import useWindowDimensions from "@/hooks/use-window-dimensions";
 
 function NavLink({ text, href }: { text: string; href: string }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -68,19 +69,7 @@ function TerminalLink() {
 }
 
 export default function Home() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setWindowWidth(window.innerWidth);
-    });
-
-    return () => {
-      window.removeEventListener("resize", () => {
-        setWindowWidth(window.innerWidth);
-      });
-    };
-  }, []);
+  const { windowWidth } = useWindowDimensions();
 
   return (
     <div className="grid lg:grid-cols-[450px_1fr] max-w-screen-2xl xl:p-[100px] lg:p-[80px] p-[40px]">
