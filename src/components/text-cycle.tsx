@@ -38,7 +38,7 @@ const text = [
 export default function TextCycle() {
   const [index, setIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const { width } = useWindowDimensions();
+  const { windowWidth } = useWindowDimensions();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -64,9 +64,9 @@ export default function TextCycle() {
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.5 }}
             className={`${
-              width < 700
+              windowWidth < 700
                 ? "text-lg"
-                : width < 500
+                : windowWidth < 500
                 ? "text-md"
                 : "text-3xl"
             } font-semibold font-fira flex items-center justify-center gap-2 select-none`}
