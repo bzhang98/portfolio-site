@@ -9,7 +9,6 @@ import {
   Code,
   Dumbbell,
   Utensils,
-  SquareTerminal,
 } from "lucide-react";
 import { useState } from "react";
 import {
@@ -19,7 +18,6 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Link } from "react-router-dom";
 import AnimatedText from "@/components/animated-text";
 import TextCycle from "@/components/text-cycle";
 import useWindowDimensions from "@/hooks/use-window-dimensions";
@@ -49,22 +47,6 @@ function NavLink({ text, href }: { text: string; href: string }) {
       ></motion.span>
       {text}
     </motion.a>
-  );
-}
-
-function TerminalLink() {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <Link
-      to={"/terminal"}
-      className="flex gap-4 items-center text-md font-fira text-gray-400 "
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <SquareTerminal />{" "}
-      {isHovered && <AnimatedText text="Launch Terminal" duration={0.5} />}
-    </Link>
   );
 }
 
@@ -102,9 +84,6 @@ export default function Home() {
                 </li>
                 <li>
                   <NavLink text="PROJECTS" href="#projects" />
-                </li>
-                <li className="self-start">
-                  <TerminalLink />
                 </li>
               </ul>
             </nav>
@@ -292,7 +271,7 @@ export default function Home() {
               </h4>
               <p>GPA: 4.0</p>
               <p>Honor Roll: Spring 2024</p>
-              <p>Expected graduation year: 2026</p>
+              <p>Expected graduation: Apr 2026</p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
@@ -389,14 +368,13 @@ export default function Home() {
           <ul className="flex flex-col gap-4">
             <motion.li
               className="flex flex-col gap-4 lg:flex-row"
-              initial={{ x: 200, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
             >
               <img
                 src="/images/android-chrome-192x192.png"
-                alt="query crafter logo"
+                alt="site logo"
                 style={{
                   width: 200,
                 }}
@@ -407,15 +385,9 @@ export default function Home() {
                 <p>
                   You're here! This React.js website was scaffolded with Vite
                   and styled with Tailwind CSS. It features a mobile-friendly
-                  responsive design and smooth animations using Framer Motion.
-                  The site is hosted on Vercel.
+                  responsive design and animations using Framer Motion. The site
+                  is hosted on Vercel.
                 </p>
-                <p className="mb-4">
-                  You can also view the content of website in a simulated
-                  terminal environment built into the browser. Go there now by
-                  clicking the link below.
-                </p>
-                <TerminalLink />
                 <ul className="flex flex-wrap gap-2 mt-4">
                   <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
                     HTML
@@ -475,9 +447,137 @@ export default function Home() {
             </motion.li>
             <motion.li
               className="flex flex-col gap-4 lg:flex-row"
-              initial={{ x: -200, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <img
+                src="/images/mesh.png"
+                alt="site logo"
+                style={{
+                  width: 200,
+                }}
+                className="self-start"
+              />
+              <div className="content">
+                <h3 className="text-lg font-bold">
+                  MESH (Minimal Emulated SHell)
+                </h3>
+                <p>
+                  This project implements a simulated terminal environment
+                  within a React application. It features an in-memory file
+                  system with support for files and directories. The terminal
+                  supports basic shell commands such as <code>ls</code>,{" "}
+                  <code>cd</code>, <code>cat</code>, <code>mkdir</code>,{" "}
+                  <code>touch</code> and other basic Unix-like commands. It uses
+                  TypeScript for improved type safety and Jest for unit testing.
+                </p>
+                <ul className="flex flex-wrap gap-2 mt-4">
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    HTML
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    CSS
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    TypeScript
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    React
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Tailwind CSS
+                  </li>
+                  <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
+                    Jest Testing Framework
+                  </li>
+                </ul>
+                <p className="my-4 font-semibold">⏳ Coming soon:</p>
+                <ul className="flex flex-col gap-2 custom-list-style">
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>Support for command history navigation
+                  </li>
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>Implement tab completion for commands and
+                    file names
+                  </li>
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>Add more complex commands (grep, find, etc.)
+                  </li>
+                </ul>
+                <div className="links mt-4 flex gap-4">
+                  <motion.div className="relative" whileHover="hover">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
+                    <motion.a
+                      href="https://github.com/bzhang98/portfolio-site"
+                      target="_blank"
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center"
+                      variants={{
+                        hover: {
+                          scale: 1.05,
+                          rotate: 5,
+                          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        duration: 0.5,
+                      }}
+                    >
+                      GitHub
+                      <motion.div
+                        initial={{ x: -2, y: 4 }}
+                        variants={{ hover: { x: 2, y: 0 } }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          duration: 0.5,
+                        }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.div>
+                    </motion.a>
+                  </motion.div>
+                  <motion.div className="relative" whileHover="hover">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
+                    <motion.a
+                      target="_blank"
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center cursor-not-allowed"
+                      variants={{
+                        hover: {
+                          scale: 1.05,
+                          rotate: 5,
+                          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        duration: 0.5,
+                      }}
+                    >
+                      Live Demo - Coming Soon™
+                      <motion.div
+                        initial={{ x: -2, y: 4 }}
+                        variants={{ hover: { x: 2, y: 0 } }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          duration: 0.5,
+                        }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.div>
+                    </motion.a>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.li>
+            <motion.li
+              className="flex flex-col gap-4 lg:flex-row"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
             >
               <img
@@ -612,9 +712,8 @@ export default function Home() {
             </motion.li>
             <motion.li
               className="flex flex-col gap-4 lg:flex-row"
-              initial={{ x: 200, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
             >
               <img
@@ -722,6 +821,38 @@ export default function Home() {
                       }}
                     >
                       GitHub
+                      <motion.div
+                        initial={{ x: -2, y: 4 }}
+                        variants={{ hover: { x: 2, y: 0 } }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          duration: 0.5,
+                        }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.div>
+                    </motion.a>
+                  </motion.div>
+                  <motion.div className="relative" whileHover="hover">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
+                    <motion.a
+                      target="_blank"
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center cursor-not-allowed"
+                      variants={{
+                        hover: {
+                          scale: 1.05,
+                          rotate: 5,
+                          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        duration: 0.5,
+                      }}
+                    >
+                      Live Demo - Coming Soon™
                       <motion.div
                         initial={{ x: -2, y: 4 }}
                         variants={{ hover: { x: 2, y: 0 } }}
