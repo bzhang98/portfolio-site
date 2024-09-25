@@ -466,11 +466,13 @@ export default function Home() {
                 <p>
                   This project implements a simulated terminal environment
                   within a React application. It features an in-memory file
-                  system with support for files and directories. The terminal
-                  supports basic shell commands such as <code>ls</code>,{" "}
-                  <code>cd</code>, <code>cat</code>, <code>mkdir</code>,{" "}
-                  <code>touch</code> and other basic Unix-like commands. It uses
-                  TypeScript for improved type safety and Jest for unit testing.
+                  system with support for files and directories with persistent
+                  storage coming soon. The terminal supports basic shell
+                  commands such as <code>ls</code>, <code>cd</code>,{" "}
+                  <code>cat</code>, <code>mkdir</code>, <code>touch</code> and
+                  others. It also supports tab completion and history
+                  navigation. The project uses TypeScript for improved type
+                  safety and Jest for unit testing.
                 </p>
                 <ul className="flex flex-wrap gap-2 mt-4">
                   <li className="bg-gray-900/70 text-blue-300 text-sm py-2 px-4 rounded-full">
@@ -495,14 +497,17 @@ export default function Home() {
                 <p className="my-4 font-semibold">⏳ Coming soon:</p>
                 <ul className="flex flex-col gap-2 custom-list-style">
                   <li className="flex gap-[6px]">
-                    <span>🚧</span>Support for command history navigation
+                    <span>🚧</span>Save files locally or on the cloud
                   </li>
                   <li className="flex gap-[6px]">
-                    <span>🚧</span>Implement tab completion for commands and
-                    file names
+                    <span>🚧</span>Support for more complex commands (grep,
+                    find, etc.)
                   </li>
                   <li className="flex gap-[6px]">
-                    <span>🚧</span>Add more complex commands (grep, find, etc.)
+                    <span>🚧</span>Pipeline support
+                  </li>
+                  <li className="flex gap-[6px]">
+                    <span>🚧</span>More powerful text editor
                   </li>
                 </ul>
                 <div className="links mt-4 flex gap-4">
@@ -542,8 +547,9 @@ export default function Home() {
                   <motion.div className="relative" whileHover="hover">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl -z-10"></div>
                     <motion.a
+                      href="https://mesh-delta.vercel.app/"
                       target="_blank"
-                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center cursor-not-allowed"
+                      className="flex rounded-xl py-2 px-4 gap-2 font-semibold relative backdrop-blur-sm bg-white/10 shadow-xl text-center"
                       variants={{
                         hover: {
                           scale: 1.05,
@@ -557,7 +563,7 @@ export default function Home() {
                         duration: 0.5,
                       }}
                     >
-                      Live Demo - Coming Soon™
+                      Live Demo
                       <motion.div
                         initial={{ x: -2, y: 4 }}
                         variants={{ hover: { x: 2, y: 0 } }}
