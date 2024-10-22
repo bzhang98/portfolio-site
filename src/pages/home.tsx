@@ -2,6 +2,38 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedText from "@/components/animated-text";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.1,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const item = {
+  hidden: { x: -50, opacity: 0, scale: 0.8, rotate: -10 },
+  show: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      type: "spring",
+      stiffness: 150,
+      damping: 15,
+    },
+  },
+  exit: { x: -50, opacity: 0, scale: 0.8, rotate: -10, transition: { duration: 0.3 } },
+};
 
 export default function Home() {
   const [linksShown, setLinksShown] = useState(false);
@@ -42,21 +74,16 @@ export default function Home() {
         {linksShown && (
           <motion.ul
             className="links flex flex-col gap-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={container}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            transition={{ duration: 1 }}
           >
-            {links.map((link, index) => (
+            {links.map((link) => (
               <motion.li
                 key={link.name}
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -20, opacity: 0 }}
-                transition={{
-                  duration: 0.3,
-                  delay: index * 0.2,
-                }}
+                variants={item}
               >
                 <a
                   href={link.url}
@@ -65,6 +92,7 @@ export default function Home() {
                 >
                   <img src={link.icon} alt={`${link.name} icon`} width={20} />
                   {link.name}
+                  <ArrowUpRight size={16} className="-ml-1" />
                 </a>
               </motion.li>
             ))}
