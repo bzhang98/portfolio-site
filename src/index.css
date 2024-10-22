@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  font-family: "Lato", sans-serif;
+  width: 100%;
+}
+
+body {
+  color: black;
+  background-color: rgb(244, 225, 199);
+  font-family: "Raleway", sans-serif;
+  min-height: 100vh;
+  padding: 10%;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding: 20%;
+  }
+}
