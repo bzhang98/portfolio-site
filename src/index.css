@@ -15,15 +15,26 @@ html {
   scroll-behavior: smooth;
 }
 
-#root {
-  font-family: "Lato", sans-serif;
-  width: 100%;
-}
-
 body {
   color: black;
   background-color: rgb(244, 225, 199);
   font-family: "Raleway", sans-serif;
   min-height: 100vh;
-  padding: 10%;
+  position: relative;
+}
+
+#root {
+  font-family: "Raleway", sans-serif;
+  width: 100%;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  #root {
+    top: 5%;
+    left: 10%;
+  }
 }
