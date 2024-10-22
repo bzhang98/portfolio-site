@@ -21,7 +21,8 @@ import { useEffect, useState } from "react";
 // Type definition for the props expected by the AnimatedText component.
 type AnimatedTextProps = {
   text: string; // The text to be animated.
-  duration: number // The duration of the animation in seconds.
+  duration: number; // The duration of the animation in seconds.
+  className?: string; // The class name to be applied to the animated text.
 };
 
 /**
@@ -30,7 +31,11 @@ type AnimatedTextProps = {
  * @param {string} text - The text to be animated.
  * @param {number} duration - The duration of the animation in seconds.
  */
-export default function AnimatedText({ text, duration }: AnimatedTextProps) {
+export default function AnimatedText({
+  text,
+  duration,
+  className,
+}: AnimatedTextProps) {
   // `count` is a motion value that starts at 0 and will animate up to the length of the text.
   const count = useMotionValue(0);
 
@@ -38,7 +43,7 @@ export default function AnimatedText({ text, duration }: AnimatedTextProps) {
   const rounded = useTransform(count, (latest) => Math.round(latest));
 
   // `displayText` is a transformed motion value of `rounded`, slicing the text to the current count.
-  const displayText = useTransform(rounded, (latest) => text.slice(0, latest));
+  const displayText = useTransform(rounded, (latest) => text.slice(0, latest)+"_");
 
   // `animationCompleted` is a state variable to keep track of whether the animation has completed.
   const [animationCompleted, setAnimationCompleted] = useState(false);
@@ -69,7 +74,11 @@ export default function AnimatedText({ text, duration }: AnimatedTextProps) {
      * otherwise, it renders with an empty class string.
      * Inside the paragraph, a `motion.span` element is rendered with the `displayText` motion value.
      */
-    <motion.h2 className={`${animationCompleted ? "animation-completed" : ""}`}>
+    <motion.h2
+      className={`${animationCompleted ? "animation-completed" : ""} ${
+        className || ""
+      }`}
+    >
       {displayText}
     </motion.h2>
   );
