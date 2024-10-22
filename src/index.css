@@ -25,11 +25,11 @@ body {
   background-color: rgb(244, 225, 199);
   font-family: "Raleway", sans-serif;
   min-height: 100vh;
-  padding: 10%;
+  padding: 20% 0 0 20%;
 }
 
 @media (min-width: 768px) {
   body {
-    padding: 20%;
+    padding: 10% 0 0 10%;
   }
 }
