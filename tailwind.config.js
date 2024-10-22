@@ -3,9 +3,13 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        inter: ["Inter", "sans-serif"], // Default global font
-        fira: ["Fira Code", "monospace"], // Fira Code for code blocks
+      screens: {
+        "3xs": "240px",
+        "2xs": "360px",
+        xs: "480px",
+      },
+      fontSize: {
+        "2xs": "0.625rem",
       },
     },
   },
