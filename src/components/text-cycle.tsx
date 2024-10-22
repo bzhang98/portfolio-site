@@ -4,12 +4,9 @@ import {
   Code,
   NotebookTabs,
   Smartphone,
-  Layers3,
   Blocks,
-  Cog,
-  Brush,
+  Dumbbell,
 } from "lucide-react";
-import useWindowDimensions from "@/hooks/use-window-dimensions";
 
 const text = [
   <>
@@ -22,23 +19,16 @@ const text = [
     <Smartphone size={24} /> Tech Enthusiast
   </>,
   <>
-    <Layers3 size={24} /> Full-Stack Developer
-  </>,
-  <>
     <Blocks size={24} /> UI/UX Designer
   </>,
   <>
-    <Cog size={24} /> Problem Solver
-  </>,
-  <>
-    <Brush size={24} /> Creative
+    <Dumbbell size={24} /> Fitness Lover
   </>,
 ];
 
 export default function TextCycle() {
   const [index, setIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const { windowWidth } = useWindowDimensions();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -57,22 +47,16 @@ export default function TextCycle() {
     <div>
       <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
         {isVisible && (
-          <motion.h1
+          <motion.p
             key={index}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.5 }}
-            className={`${
-              windowWidth < 700
-                ? "text-lg"
-                : windowWidth < 500
-                ? "text-md"
-                : "text-3xl"
-            } font-semibold font-fira flex items-center justify-center gap-2 select-none`}
+            className={`text-2xl xs:text-4xl font-semibold flex items-center justify-center gap-2 select-none w-[24rem]`}
           >
             {text[index]}
-          </motion.h1>
+          </motion.p>
         )}
       </AnimatePresence>
     </div>
