@@ -43,7 +43,10 @@ export default function AnimatedText({
   const rounded = useTransform(count, (latest) => Math.round(latest));
 
   // `displayText` is a transformed motion value of `rounded`, slicing the text to the current count.
-  const displayText = useTransform(rounded, (latest) => text.slice(0, latest)+"_");
+  const displayText = useTransform(
+    rounded,
+    (latest) => text.slice(0, latest) + "_"
+  );
 
   // `animationCompleted` is a state variable to keep track of whether the animation has completed.
   const [animationCompleted, setAnimationCompleted] = useState(false);
@@ -74,12 +77,12 @@ export default function AnimatedText({
      * otherwise, it renders with an empty class string.
      * Inside the paragraph, a `motion.span` element is rendered with the `displayText` motion value.
      */
-    <motion.h2
+    <motion.h1
       className={`${animationCompleted ? "animation-completed" : ""} ${
         className || ""
       }`}
     >
       {displayText}
-    </motion.h2>
+    </motion.h1>
   );
 }

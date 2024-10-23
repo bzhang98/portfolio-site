@@ -32,74 +32,81 @@ const item = {
       damping: 15,
     },
   },
-  exit: { x: -50, opacity: 0, scale: 0.8, rotate: -10, transition: { duration: 0.3 } },
+  exit: {
+    x: -50,
+    opacity: 0,
+    scale: 0.8,
+    rotate: -10,
+    transition: { duration: 0.3 },
+  },
 };
 
 export default function Home() {
   const [linksShown, setLinksShown] = useState(false);
 
   return (
-    <main className="flex flex-col gap-4 justify-center max-w-sm">
-      <AnimatedText
-        text={"<Brian Zhang />"}
-        duration={2}
-        className="text-lg font-mono"
-      />
-      <p>~/</p>
-      <p>
-        Web Developer and Computer Science Student based in Winnipeg, Canada 🇨🇦
-      </p>
-
-      <p>Passionate about creating interactive web applications.</p>
-      <p>
-        Take a look at some of my recent{" "}
-        <Link
-          to="/projects"
-          className="underline rounded-md text-neutral-800 bg-green-400 hover:bg-green-300 transition-all p-[2px]"
-        >
-          projects
-        </Link>{" "}
-        or feel free to{" "}
-        <button
-          className="underline leading-5 hover:bg-yellow-300 rounded-md transition-all"
-          onClick={() => {
-            setLinksShown(!linksShown);
-          }}
-        >
-          get in touch
-        </button>
-      </p>
-
-      <AnimatePresence>
-        {linksShown && (
-          <motion.ul
-            className="links flex flex-col gap-2"
-            variants={container}
-            initial="hidden"
-            animate="show"
-            exit="exit"
-            transition={{ duration: 1 }}
+    <>
+      <header className="flex flex-col gap-4 mb-8">
+        <AnimatedText
+          text={"<Brian Zhang />"}
+          duration={2}
+          className="text-lg font-mono"
+        />
+        <p className="font-mono">~/</p>
+      </header>
+      <main className="max-w-sm flex flex-col gap-4">
+        <p>
+          Web Developer and Computer Science Student based in Winnipeg, Canada
+          🇨🇦
+        </p>
+        <p>Passionate about creating interactive web applications.</p>
+        <p>
+          Take a look at some of my recent{" "}
+          <Link
+            to="/projects"
+            className="underline rounded-md text-neutral-800 bg-green-400 hover:bg-green-300 transition-all p-[2px]"
           >
-            {links.map((link) => (
-              <motion.li
-                key={link.name}
-                variants={item}
-              >
-                <a
-                  href={link.url}
-                  target="_blank"
-                  className="flex gap-2 items-center hover:underline"
-                >
-                  <img src={link.icon} alt={`${link.name} icon`} width={20} />
-                  {link.name}
-                  <ArrowUpRight size={16} className="-ml-1" />
-                </a>
-              </motion.li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
-    </main>
+            projects
+          </Link>{" "}
+          or feel free to{" "}
+          <button
+            className="underline leading-5 hover:bg-yellow-300 rounded-md transition-all"
+            onClick={() => {
+              setLinksShown(!linksShown);
+            }}
+          >
+            get in touch
+          </button>
+        </p>
+
+        <AnimatePresence>
+          {linksShown && (
+            <motion.ul
+              className="links flex flex-col gap-2"
+              variants={container}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              transition={{ duration: 1 }}
+            >
+              {links.map((link) => (
+                <motion.li key={link.name} variants={item}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    className="flex gap-2 items-center hover:underline"
+                  >
+                    <img src={link.icon} alt={`${link.name} icon`} width={20} />
+                    {link.name}
+                    <ArrowUpRight size={16} className="-ml-1" />
+                  </a>
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </main>
+    </>
   );
 }
 
