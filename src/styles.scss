@@ -114,6 +114,7 @@ a:hover .icon--append {
   &__tag-list {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
     list-style-type: none;
   }
 
