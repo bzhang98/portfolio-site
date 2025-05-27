@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  line-height: 1.6;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+.header__heading {
+  font-size: 2rem;
+}
+.header__description {
+  font-size: 1.5rem;
+}
+
+header,
+main {
+  margin-bottom: 2rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+a:hover {
+  color: #0052a3;
+}
+a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  left: 0;
+  bottom: 0;
+  transition: width 0.2s ease;
+}
+a:hover::after {
+  width: 100%;
+}
+
+.icon--prepend {
+  margin-right: 0.25rem;
+}
+.icon--append {
+  transition: transform 0.2s ease;
+  opacity: 0.8;
+}
+
+a:hover .icon--append {
+  transform: translate(2px, -2px);
+}
+
+.about {
+  margin-bottom: 2rem;
+}
+.about__description {
+  margin-bottom: 1rem;
+}
+
+.tech-stack {
+  margin-bottom: 2rem;
+}
+
+.projects__item {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.projects__tag-list {
+  display: flex;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+.projects__tag {
+  background-color: #e0e0e0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  color: #333;
+  font-weight: 800;
+}
+.projects__tag[data-tag=React] {
+  background-color: rgb(116, 193, 218);
+  color: #626262;
+}
+.projects__tag[data-tag=TypeScript] {
+  background-color: #3178c6;
+  color: white;
+}
+.projects__tag[data-tag=Python] {
+  background: linear-gradient(135deg, rgba(55, 118, 171, 0.5) 50%, rgba(255, 212, 59, 0.5) 50%);
+  color: black;
+  font-weight: bold;
+}
+.projects__tag[data-tag=C] {
+  background-color: #a8b9cc;
+  color: #333;
+}
+.projects__tag[data-tag="Tailwind CSS"] {
+  background-color: #000000;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.projects__tag[data-tag="Framer Motion"] {
+  background-color: #ffd700;
+  color: #000000;
+}
+.projects__tag[data-tag="Shadcn UI"] {
+  background-color: #000000;
+  color: white;
+}
+.projects__tag[data-tag=Unix] {
+  background-color: #333333;
+  color: white;
+}
+.projects__link-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.footer {
+  margin-top: 2rem;
+}
+.footer__heading {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.footer__description {
+  margin-bottom: 1rem;
+}
+.footer__link-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.footer__link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/*# sourceMappingURL=styles.css.map */

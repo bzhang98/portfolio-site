@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  line-height: 1.6;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+// Typography
+.header {
+  margin-bottom: 2rem;
+
+  &__heading {
+    font-size: 2rem;
+  }
+
+  &__description {
+    font-size: 1.5rem;
+  }
+}
+
+// Layout
+header,
+main {
+  margin-bottom: 2rem;
+}
+
+// Lists
+ul {
+  list-style-type: none;
+}
+
+// Links
+a {
+  color: #0066cc;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &:hover {
+    color: #0052a3;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    left: 0;
+    bottom: 0;
+    transition: width 0.2s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// Icons
+.icon {
+  &--prepend {
+    margin-right: 0.25rem;
+  }
+
+  &--append {
+    transition: transform 0.2s ease;
+    opacity: 0.8;
+  }
+}
+
+a:hover .icon--append {
+  transform: translate(2px, -2px);
+}
+
+// About
+.about {
+  margin-bottom: 2rem;
+
+  &__description {
+    margin-bottom: 1rem;
+  }
+}
+
+.tech-stack {
+  margin-bottom: 2rem;
+}
+
+// Projects
+.projects {
+  &__item {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__tag-list {
+    display: flex;
+    gap: 0.5rem;
+    list-style-type: none;
+  }
+
+  &__tag {
+    background-color: #e0e0e0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    color: #333;
+    font-weight: 800;
+
+    // Technology-specific colors
+    &[data-tag="React"] {
+      background-color: rgb(116, 193, 218);
+      color: #626262;
+    }
+
+    &[data-tag="TypeScript"] {
+      background-color: #3178c6;
+      color: white;
+    }
+
+    &[data-tag="Python"] {
+      background: linear-gradient(
+        135deg,
+        rgba(55, 118, 171, 0.5) 50%,
+        rgba(255, 212, 59, 0.5) 50%
+      );
+      color: black;
+      font-weight: bold;
+    }
+
+    &[data-tag="C"] {
+      background-color: #a8b9cc;
+      color: #333;
+    }
+
+    &[data-tag="Tailwind CSS"] {
+      background-color: #000000;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    &[data-tag="Framer Motion"] {
+      background-color: #ffd700;
+      color: #000000;
+    }
+
+    &[data-tag="Shadcn UI"] {
+      background-color: #000000;
+      color: white;
+    }
+
+    &[data-tag="Unix"] {
+      background-color: #333333;
+      color: white;
+    }
+  }
+
+  &__link-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+}
+
+// Footer
+.footer {
+  margin-top: 2rem;
+
+  &__heading {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__description {
+    margin-bottom: 1rem;
+  }
+
+  &__link-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}
