@@ -1,8 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
@@ -10,24 +15,40 @@ body {
   background-color: #f0f0f0;
   color: #333;
   line-height: 1.6;
-  padding: 2rem;
-  max-width: 800px;
+  max-width: 768px;
   margin: 0 auto;
+  position: relative;
+  padding: 2rem;
 }
 
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  transform: translateY(75vh);
 }
 .header__heading {
+  font-family: "Fira Code", monospace;
   font-size: 2rem;
+  width: fit-content;
+  padding-right: 0.5rem;
+  border-right: 4px solid orange;
+  margin: 0;
 }
 .header__description {
   font-size: 1.5rem;
+  margin: 0.5rem 0 0;
 }
 
-header,
-main {
-  margin-bottom: 2rem;
+.wrapper {
+  padding-bottom: 2rem;
+  transform: translateY(75vh);
+  mask-image: linear-gradient(to bottom, black calc(100% - 50px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 50px), transparent 100%);
+  mask-position: top;
+  -webkit-mask-position: top;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  opacity: 0;
+  visibility: hidden;
 }
 
 ul {
@@ -50,10 +71,11 @@ a::after {
   content: "";
   position: absolute;
   width: 0;
-  height: 1px;
+  height: 2px;
   background: currentColor;
-  left: 0;
+  left: 50%;
   bottom: 0;
+  transform: translateX(-50%);
   transition: width 0.2s ease;
 }
 a:hover::after {
@@ -83,6 +105,10 @@ a:hover .icon--append {
   margin-bottom: 2rem;
 }
 
+.wrapper {
+  overflow: hidden;
+}
+
 .projects__item {
   margin-bottom: 0.5rem;
   padding: 0.5rem 0;
@@ -99,11 +125,15 @@ a:hover .icon--append {
 }
 .projects__tag {
   background-color: #e0e0e0;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.8rem;
+  line-height: 1;
   color: #333;
   font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 .projects__tag[data-tag=React] {
   background-color: rgb(116, 193, 218);
@@ -125,9 +155,6 @@ a:hover .icon--append {
 .projects__tag[data-tag="Tailwind CSS"] {
   background-color: #000000;
   color: white;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
 }
 .projects__tag[data-tag="Framer Motion"] {
   background-color: #ffd700;
@@ -147,6 +174,22 @@ a:hover .icon--append {
   align-items: flex-start;
   gap: 1rem;
   margin-top: 0.5rem;
+}
+.projects__link {
+  position: relative;
+  color: #1d5a97;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+}
+.projects__link:hover {
+  color: #0052a3;
+  border-color: currentColor;
+}
+.projects__link .icon {
+  opacity: 0.8;
 }
 
 .footer {
@@ -169,6 +212,38 @@ a:hover .icon--append {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+@keyframes slideUpIntoPlace {
+  0% {
+    transform: translateY(75vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes reveal-down {
+  0% {
+    mask-size: 100% 0%;
+    -webkit-mask-size: 100% 0%;
+  }
+  50% {
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+  }
+  100% {
+    mask-image: linear-gradient(to bottom, black 0%, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 100%);
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
