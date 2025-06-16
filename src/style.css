@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-monospace: "Fira Code", monospace;
+  --font-sans: "Inter", sans-serif;
+}
+
+.title::after {
+  content: "";
+  height: 1em;
+  margin-left: 1px;
+  border-right: 3px solid orange;
+}
+
+.title.blinking::after {
+  animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+.icon {
+  transition: transform 0.2s ease;
+}
+
+a:hover .icon-next {
+  transform: translateX(4px);
+}
+
+a:hover .icon-link {
+  transform: translate(2px, -2px);
+}
